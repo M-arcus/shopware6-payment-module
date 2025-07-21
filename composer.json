@@ -1,68 +1,72 @@
 {
     "name": "billie/shopware6-payment-module",
     "description": "Billie payment for Shopware 6",
-    "version": "3.1.1",
     "license": "MIT",
+    "type": "shopware-platform-plugin",
+    "version": "3.1.1",
     "authors": [
         {
             "name": "Billie GmbH"
         }
     ],
-    "type": "shopware-platform-plugin",
+    "require": {
+        "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
+        "billie/api-php-sdk": "^3.1",
+        "shopware/core": "~6.7.0"
+    },
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.47",
+        "frosh/shopware-rector": "^0.5.6",
+        "phpstan/phpstan": "^2.1",
+        "rector/rector": "^2.1",
+        "symplify/easy-coding-standard": "^12.5"
+    },
     "autoload": {
         "psr-4": {
             "Billie\\BilliePayment\\": "src/"
         }
     },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true,
+            "symfony/runtime": true
+        }
+    },
     "extra": {
-        "shopware-plugin-class": "Billie\\BilliePayment\\BilliePaymentSW6",
         "copyright": "(c) by Billie GmbH",
-        "plugin-icon": "src/Resources/public/plugin.png",
-        "label": {
+        "description": {
             "de-DE": "B2B-Rechnungskauf",
             "en-GB": "B2B-Invoicing"
         },
-        "description": {
+        "label": {
             "de-DE": "B2B-Rechnungskauf",
             "en-GB": "B2B-Invoicing"
         },
         "manufacturerLink": {
             "de-DE": "https://www.billie.io/",
             "en-GB": "https://www.billie.io/"
-        }
-    },
-    "require": {
-        "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
-        "shopware/core": "~6.7.0",
-        "billie/api-php-sdk": "^3.1"
-    },
-    "require-dev": {
-        "phpstan/phpstan": "^2.1",
-        "rector/rector": "^2.1",
-        "symplify/easy-coding-standard": "^12.5",
-        "frosh/shopware-rector": "^0.5.6"
+        },
+        "plugin-icon": "src/Resources/public/plugin.png",
+        "shopware-plugin-class": "Billie\\BilliePayment\\BilliePaymentSW6"
     },
     "scripts": {
-        "rector-fix": "./vendor/bin/rector process --autoload-file ../../../vendor/autoload.php",
-        "rector-lint": "./vendor/bin/rector process --dry-run --autoload-file ../../../vendor/autoload.php",
-        "phpstan-lint": "./vendor/bin/phpstan analyse --memory-limit=2G --autoload-file ../../../vendor/autoload.php",
+        "build": "shopware-cli extension build .",
+        "check": "docker run --rm -v $(pwd):/ext shopware/shopware-cli:latest extension validate --full /ext",
         "code-style-fix": "./vendor/bin/ecs --fix",
         "code-style-lint": "./vendor/bin/ecs",
+        "fix": [
+            "@rector-fix",
+            "@code-style-fix"
+        ],
+        "format": "docker run --rm -v $(pwd):/ext shopware/shopware-cli:latest extension format /ext",
         "lint": [
             "@rector-lint",
             "@phpstan-lint",
             "@code-style-lint"
         ],
-        "fix": [
-            "@rector-fix",
-            "@code-style-fix"
-        ],
-        "release": "shopware-cli extension zip . --disable-git --release",
-        "build": "shopware-cli extension build ."
-    },
-    "config": {
-        "allow-plugins": {
-            "symfony/runtime": true
-        }
+        "phpstan-lint": "./vendor/bin/phpstan analyse --memory-limit=2G --autoload-file ../../../vendor/autoload.php",
+        "rector-fix": "./vendor/bin/rector process --autoload-file ../../../vendor/autoload.php",
+        "rector-lint": "./vendor/bin/rector process --dry-run --autoload-file ../../../vendor/autoload.php",
+        "release": "shopware-cli extension zip . --disable-git --release"
     }
 }
