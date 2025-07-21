@@ -48,7 +48,7 @@ class AddressHelper
             ->setCountryCode($addressEntity->getCountry()->getIso());
     }
 
-    private static function validateParam(object $address = null): void
+    private static function validateParam(?object $address = null): void
     {
         if (!$address instanceof OrderAddressEntity && !$address instanceof CustomerAddressEntity) {
             throw new InvalidArgumentException('the param `address` must be type of ' . OrderAddressEntity::class . ' or ' . CustomerAddressEntity::class . '. Given type: ' . ($address !== null ? $address::class : 'null'));

@@ -34,7 +34,7 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Storefront\Controller\StorefrontController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 #[Route(path: '/billie-payment', defaults: [
     '_routeScope' => ['storefront'],
@@ -65,7 +65,7 @@ class CheckoutController extends StorefrontController
         methods: ['POST']
     )
     ]
-    public function updateCustomerAddress(Request $request, SalesChannelContext $salesChannelContext, string $orderId = null): NotFoundHttpException|NoContentResponse
+    public function updateCustomerAddress(Request $request, SalesChannelContext $salesChannelContext, ?string $orderId = null): NotFoundHttpException|NoContentResponse
     {
         // ###############################################################################################################
         // ## PLEASE NOTE ################################################################################################
