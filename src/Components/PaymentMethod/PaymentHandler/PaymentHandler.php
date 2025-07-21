@@ -20,7 +20,6 @@ use Billie\Sdk\Exception\GatewayException;
 use Billie\Sdk\Model\Order;
 use Billie\Sdk\Service\Request\CheckoutSession\CheckoutSessionConfirmRequest;
 use Monolog\Logger;
-use RuntimeException;
 use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\SynchronousPaymentHandlerInterface;
 use Shopware\Core\Checkout\Payment\Cart\SyncPaymentTransactionStruct;
 use Shopware\Core\Checkout\Payment\Exception\SyncPaymentProcessException;
@@ -31,7 +30,6 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
-use Throwable;
 
 class PaymentHandler implements SynchronousPaymentHandlerInterface
 {
@@ -101,7 +99,7 @@ class PaymentHandler implements SynchronousPaymentHandlerInterface
         $this->eventDispatcher->dispatch(new BillieStateChangedEvent($order, $transaction->getOrderTransaction(), Order::STATE_AUTHORIZED, $salesChannelContext->getContext()));
     }
 
-    private function syncProcessInterrupted(string $orderTransactionId, string $errorMessage, ?Throwable $e = null): Throwable
+    private function syncProcessInterrupted(string $orderTransactionId, string $errorMessage, ?\Throwable $e = null): \Throwable
     {
         if (class_exists(PaymentException::class)) {
             return PaymentException::syncProcessInterrupted($orderTransactionId, $errorMessage, $e);
@@ -111,6 +109,6 @@ class PaymentHandler implements SynchronousPaymentHandlerInterface
         }
 
         // should never occur - just to be safe
-        return new RuntimeException('payment interrupted: ' . $errorMessage, 0, $e);
+        return new \RuntimeException('payment interrupted: ' . $errorMessage, 0, $e);
     }
 }

@@ -16,7 +16,6 @@ use Billie\BilliePayment\Components\PaymentMethod\Util\MethodHelper;
 use Billie\Sdk\Exception\BillieException;
 use Billie\Sdk\Exception\Validation\InvalidFieldValueCollectionException;
 use Billie\Sdk\Exception\Validation\InvalidFieldValueException;
-use RuntimeException;
 use Shopware\Core\Framework\Struct\ArrayStruct;
 use Shopware\Storefront\Page\Account\Order\AccountEditOrderPageLoadedEvent;
 use Shopware\Storefront\Page\Checkout\Confirm\CheckoutConfirmPageLoadedEvent;
@@ -41,7 +40,7 @@ class CheckoutSubscriber implements EventSubscriberInterface
     public function addWidgetData(PageLoadedEvent $event): void
     {
         if (!$event instanceof CheckoutConfirmPageLoadedEvent && !$event instanceof AccountEditOrderPageLoadedEvent) {
-            throw new RuntimeException('method ' . self::class . '::' . __METHOD__ . ' does not supports a parameter of type' . $event::class);
+            throw new \RuntimeException('method ' . self::class . '::' . __METHOD__ . ' does not supports a parameter of type' . $event::class);
         }
 
         $paymentMethod = $event->getSalesChannelContext()->getPaymentMethod();
@@ -55,7 +54,7 @@ class CheckoutSubscriber implements EventSubscriberInterface
                 } elseif ($event instanceof AccountEditOrderPageLoadedEvent) {
                     $widgetData = $this->widgetService->getWidgetDataByOrder($event->getPage()->getOrder(), $event->getSalesChannelContext());
                 } else {
-                    throw new RuntimeException('invalid event: ' . gettype($event));
+                    throw new \RuntimeException('invalid event: ' . \gettype($event));
                 }
 
                 if ($widgetData instanceof ArrayStruct) {

@@ -4,6 +4,6 @@ monolog:
     handlers:
         billieLogHandler:
             type: rotating_file
-            path: "%kernel.logs_dir%/billie_%kernel.environment%.log"
+            path: '%kernel.logs_dir%/billie_%kernel.environment%.log'
             level: error
-            channels: [ "billie"]
+            channels: ['billie']

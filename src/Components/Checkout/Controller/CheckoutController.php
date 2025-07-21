@@ -14,7 +14,6 @@ namespace Billie\BilliePayment\Components\Checkout\Controller;
 use Billie\Sdk\Model\Address;
 use Billie\Sdk\Model\Person;
 use Billie\Sdk\Util\ArrayHelper;
-use ReflectionClass;
 use Shopware\Core\Checkout\Customer\Aggregate\CustomerAddress\CustomerAddressCollection;
 use Shopware\Core\Checkout\Customer\Aggregate\CustomerAddress\CustomerAddressEntity;
 use Shopware\Core\Checkout\Customer\CustomerEntity;
@@ -162,7 +161,7 @@ class CheckoutController extends StorefrontController
 
             if ($isNewAddress) {
                 if ($referencedEntity instanceof CustomerEntity) {
-                    $refAccountService = new ReflectionClass($this->accountService);
+                    $refAccountService = new \ReflectionClass($this->accountService);
                     $arguments = [$shippingAddressData['id'], $salesChannelContext];
 
                     if ($refAccountService->getMethod('setDefaultShippingAddress')->getNumberOfParameters() === 3) {
@@ -185,7 +184,7 @@ class CheckoutController extends StorefrontController
 
     private function compareArrays(array $array1, array $array2): bool
     {
-        if (count($array1) !== count($array2)) {
+        if (\count($array1) !== \count($array2)) {
             return false;
         }
 

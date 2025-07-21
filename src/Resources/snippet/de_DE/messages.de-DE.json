@@ -9,7 +9,7 @@
             "due-date": "Fälligkeitsdatum",
             "purpose": "Verwendungszweck"
         },
-        "cookie":  {
+        "cookie": {
             "group_name": "Billie Payment Widget"
         }
     }

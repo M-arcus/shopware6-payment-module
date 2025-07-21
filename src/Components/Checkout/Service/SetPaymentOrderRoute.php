@@ -27,6 +27,7 @@ class SetPaymentOrderRoute extends CoreSetPaymentOrderRoute
 {
     /**
      * @param EntityRepository<PaymentMethodCollection> $paymentMethodRepository
+     *
      * @noinspection MagicMethodsValidityInspection
      * @noinspection PhpMissingParentConstructorInspection
      */

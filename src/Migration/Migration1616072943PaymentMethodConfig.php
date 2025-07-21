@@ -30,14 +30,14 @@ class Migration1616072943PaymentMethodConfig extends MigrationStep
     {
         $methodName = MigrationHelper::getExecuteStatementMethod();
 
-        $connection->{$methodName}("
+        $connection->{$methodName}('
             CREATE TABLE `billie_payment_config` (
                 `payment_method_id` binary(16) NOT NULL,
-                `duration` int(11) NOT NULL DEFAULT '14',
+                `duration` int(11) NOT NULL DEFAULT \'14\',
                 PRIMARY KEY (`payment_method_id`),
                 CONSTRAINT `billie_payment_config_ibfk_1` FOREIGN KEY (`payment_method_id`) REFERENCES `payment_method` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-        ");
+        ');
 
         // this is a little bit crazy:
         // The migrations will be executed AFTER the plugin method call `install`/`update`.

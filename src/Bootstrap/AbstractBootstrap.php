@@ -110,6 +110,6 @@ abstract class AbstractBootstrap
 
     final protected function getPluginPath(): string
     {
-        return $this->container->getParameter('kernel.root_dir') . DIRECTORY_SEPARATOR . $this->plugin->getPath();
+        return $this->container->getParameter('kernel.root_dir') . \DIRECTORY_SEPARATOR . $this->plugin->getPath();
     }
 }

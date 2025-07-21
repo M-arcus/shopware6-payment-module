@@ -18,6 +18,6 @@ class MethodHelper
 {
     public static function isBilliePayment(PaymentMethodEntity $paymentMethodEntity): bool
     {
-        return array_key_exists($paymentMethodEntity->getHandlerIdentifier(), PaymentMethods::PAYMENT_METHODS);
+        return \array_key_exists($paymentMethodEntity->getHandlerIdentifier(), PaymentMethods::PAYMENT_METHODS);
     }
 }

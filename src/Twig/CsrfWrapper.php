@@ -21,6 +21,7 @@ use Twig\TwigFunction;
  * The twig function has been removed with Shopware 6.5.0.0.
  * To keep the module compatible we will add a custom twig function and will forward the method call to the service
  * if the service exists.
+ *
  * @deprecated will be removed in a future release
  */
 class CsrfWrapper extends AbstractExtension
@@ -35,6 +36,7 @@ class CsrfWrapper extends AbstractExtension
         /**
          * @noinspection PhpUndefinedClassInspection
          * @noinspection RedundantSuppression
+         *
          * @phpstan-ignore-next-line
          */
         $extensionClass = CsrfFunctionExtension::class;

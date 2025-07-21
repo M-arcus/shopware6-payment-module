@@ -1,14 +1,14 @@
 import template from './sw-order-detail.html.twig';
-import deDE from "./snippet/de-DE.json";
-import enGB from "./snippet/en-GB.json";
+import deDE from './snippet/de-DE.json';
+import enGB from './snippet/en-GB.json';
 
-const {Component, State} = Shopware;
+const { Component, State } = Shopware;
 
 Component.override('sw-order-detail', {
     template,
     snippets: {
         'de-DE': deDE,
-        'en-GB': enGB
+        'en-GB': enGB,
     },
 
     methods: {
@@ -31,16 +31,21 @@ Component.override('sw-order-detail', {
          * please do not forget to copy the method `createdComponent()`.
          */
         _65to64LoadOrderBackwardCompatibility() {
-            if (this.versionContext || (this.order && this.order.id === this.orderId)) {
+            if (
+                this.versionContext ||
+                (this.order && this.order.id === this.orderId)
+            ) {
                 // if the versionContext has been already set, it seems like FEATURE_NEXT_7530 has been enabled or
                 // shopware is on version > 6.5.
                 return;
             }
 
             State.commit('swOrderDetail/setLoading', ['order', true]);
-            this.orderRepository.get(this.orderId, Shopware.Context.api, this.orderCriteria).then((response) => {
-                State.commit('swOrderDetail/setOrder', response);
-            });
-        }
-    }
+            this.orderRepository
+                .get(this.orderId, Shopware.Context.api, this.orderCriteria)
+                .then((response) => {
+                    State.commit('swOrderDetail/setOrder', response);
+                });
+        },
+    },
 });

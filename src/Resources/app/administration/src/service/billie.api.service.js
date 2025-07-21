@@ -11,16 +11,18 @@ export default class BillieApiService extends ApiService {
 
     testCredentials(id, secret, isSandbox) {
         return this.httpClient
-            .post(`${this.getApiBasePath()}/test-credentials`,
+            .post(
+                `${this.getApiBasePath()}/test-credentials`,
                 {
                     id: id,
                     secret: secret,
-                    isSandbox: isSandbox
+                    isSandbox: isSandbox,
                 },
                 {
-                    headers: this.getBasicHeaders()
+                    headers: this.getBasicHeaders(),
                 }
-            ).then((response) => {
+            )
+            .then((response) => {
                 return ApiService.handleResponse(response);
             });
     }

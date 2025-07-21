@@ -26,9 +26,7 @@ use Billie\Sdk\Service\Request\Invoice\CreateCreditNoteRequest;
 use Billie\Sdk\Service\Request\Invoice\CreateInvoiceRequest;
 use Billie\Sdk\Service\Request\Order\CancelOrderRequest;
 use Billie\Sdk\Service\Request\Order\GetOrderRequest;
-use Exception;
 use Monolog\Logger;
-use RuntimeException;
 use Shopware\Core\Checkout\Document\Renderer\InvoiceRenderer;
 use Shopware\Core\Checkout\Order\OrderEntity;
 use Shopware\Core\Framework\Context;
@@ -71,8 +69,8 @@ class OperationService
 
         if (!$invoiceNumber || !$shippingUrl) {
             foreach ($order->getDocuments() as $document) {
-                if ($invoiceNumber === null &&
-                    $document->getDocumentType()->getTechnicalName() === InvoiceRenderer::TYPE
+                if ($invoiceNumber === null
+                    && $document->getDocumentType()->getTechnicalName() === InvoiceRenderer::TYPE
                 ) {
                     $config = $document->getConfig();
                     $invoiceNumber = $config['custom']['invoiceNumber'] ?? null;
@@ -209,7 +207,7 @@ class OperationService
                     OrderDataEntity::FIELD_ORDER_STATE => $state,
                 ], $additionalData),
             ], $context);
-        } catch (Exception $exception) {
+        } catch (\Exception $exception) {
             $this->logger->critical(
                 'Order state can not be updated. (Exception: ' . $exception->getMessage() . ')',
                 [
@@ -234,7 +232,7 @@ class OperationService
         $billieData = $order->getExtension(OrderExtension::EXTENSION_NAME);
 
         if (!$billieData instanceof OrderDataEntity) {
-            throw new RuntimeException('The order `' . $order->getId() . '` is not a billie order, or the billie order data extension has not been loaded');
+            throw new \RuntimeException('The order `' . $order->getId() . '` is not a billie order, or the billie order data extension has not been loaded');
         }
 
         return $billieData;

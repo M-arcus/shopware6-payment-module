@@ -43,7 +43,7 @@ class PaymentMethods extends AbstractBootstrap
                 ],
                 'en-GB' => [
                     'name' => 'Pay Later for businesses',
-                    'description' => "Pay after {duration} days, Interest-free, No registration needed, Europe's go-to B2B payment solution",
+                    'description' => 'Pay after {duration} days, Interest-free, No registration needed, Europe\'s go-to B2B payment solution',
                 ],
             ],
             PaymentMethodExtension::EXTENSION_NAME => [

@@ -78,7 +78,7 @@ class ConfigService
             default => $config['salutationFallback'],
         };
 
-        return in_array($return, ['m', 'f'], true) ? $return : 'm';
+        return \in_array($return, ['m', 'f'], true) ? $return : 'm';
     }
 
     public function isStateWatchingEnabled(): bool

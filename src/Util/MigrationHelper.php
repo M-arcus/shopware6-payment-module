@@ -12,13 +12,12 @@ declare(strict_types=1);
 namespace Billie\BilliePayment\Util;
 
 use Doctrine\DBAL\Connection;
-use ReflectionClass;
 
 class MigrationHelper
 {
     public static function getExecuteStatementMethod(): string
     {
-        return (new ReflectionClass(Connection::class))
+        return (new \ReflectionClass(Connection::class))
             ->hasMethod('executeStatement') ? 'executeStatement' : 'executeQuery';
     }
 }

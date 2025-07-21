@@ -88,25 +88,25 @@ class OrderDataDefinition extends EntityDefinition
                 OrderDataEntity::FIELD_REFERENCE_ID
             ))->addFlags(new Required()),
 
-            (new StringField(
+            new StringField(
                 'invoice_uuid',
                 OrderDataEntity::FIELD_INVOICE_UUID
-            )),
+            ),
 
-            (new StringField(
+            new StringField(
                 'external_invoice_number',
                 OrderDataEntity::FIELD_EXTERNAL_INVOICE_NUMBER
-            )),
+            ),
 
-            (new StringField(
+            new StringField(
                 'external_invoice_url',
                 OrderDataEntity::FIELD_EXTERNAL_INVOICE_URL
-            )),
+            ),
 
-            (new StringField(
+            new StringField(
                 'external_delivery_note_url',
                 OrderDataEntity::FIELD_EXTERNAL_DELIVERY_NOTE_URL
-            )),
+            ),
 
             (new StringField(
                 'bank_iban',

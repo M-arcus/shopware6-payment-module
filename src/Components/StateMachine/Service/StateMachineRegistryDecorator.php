@@ -39,6 +39,7 @@ class StateMachineRegistryDecorator extends StateMachineRegistry // we must exte
     /**
      * @param EntityRepository<OrderCollection> $orderRepository
      * @param EntityRepository<OrderDeliveryCollection> $orderDeliveryRepository
+     *
      * @noinspection MagicMethodsValidityInspection
      * @noinspection PhpMissingParentConstructorInspection
      */
@@ -62,9 +63,9 @@ class StateMachineRegistryDecorator extends StateMachineRegistry // we must exte
 
             $transaction = $order instanceof OrderEntity ? $order->getTransactions()->first() : null;
             $paymentMethod = $transaction instanceof OrderTransactionEntity ? $transaction->getPaymentMethod() : null;
-            if ($paymentMethod &&
-                MethodHelper::isBilliePayment($paymentMethod) &&
-                !$this->orderHasBillieInvoiceNumber($order)
+            if ($paymentMethod
+                && MethodHelper::isBilliePayment($paymentMethod)
+                && !$this->orderHasBillieInvoiceNumber($order)
             ) {
                 throw new InvoiceNumberMissingException();
             }

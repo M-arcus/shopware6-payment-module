@@ -13,7 +13,6 @@ namespace Billie\BilliePayment\Bootstrap;
 
 use Billie\BilliePayment\Util\MigrationHelper;
 use Doctrine\DBAL\Connection;
-use Exception;
 
 class Database extends AbstractBootstrap
 {
@@ -36,7 +35,7 @@ class Database extends AbstractBootstrap
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function uninstall(bool $keepUserData = false): void
     {

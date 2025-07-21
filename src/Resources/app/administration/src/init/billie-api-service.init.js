@@ -5,7 +5,10 @@ Shopware.Application.addServiceProvider('billieApiService', () => {
     const initContainer = Shopware.Application.getContainer('init');
 
     const apiServiceFactory = factoryContainer.apiService;
-    const service = new BillieApiService(initContainer.httpClient, Shopware.Service('loginService'));
+    const service = new BillieApiService(
+        initContainer.httpClient,
+        Shopware.Service('loginService')
+    );
     const serviceName = service.name;
     apiServiceFactory.register(serviceName, service);
 

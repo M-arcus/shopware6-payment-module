@@ -37,6 +37,7 @@ class PaymentMethodRoute extends AbstractPaymentMethodRoute
     /**
      * @param EntityRepository<OrderCollection> $orderRepository
      * @param EntityRepository<CountryCollection> $countryRepository
+     *
      * @noinspection MagicMethodsValidityInspection
      */
     public function __construct(
@@ -147,7 +148,7 @@ class PaymentMethodRoute extends AbstractPaymentMethodRoute
             // Translations
             $prepared = [];
             foreach ($paymentMethod->getTranslated() as $key => $translated) {
-                if (is_string($translated)) {
+                if (\is_string($translated)) {
                     $translated = str_replace('{duration}', $duration, $translated);
                 }
 

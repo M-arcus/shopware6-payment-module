@@ -12,7 +12,6 @@ declare(strict_types=1);
 namespace Billie\BilliePayment\Components\BillieApi\Util;
 
 use Billie\Sdk\Model\Address;
-use InvalidArgumentException;
 use Shopware\Core\Checkout\Customer\Aggregate\CustomerAddress\CustomerAddressEntity;
 use Shopware\Core\Checkout\Customer\CustomerEntity;
 use Shopware\Core\Checkout\Order\Aggregate\OrderAddress\OrderAddressEntity;
@@ -51,7 +50,7 @@ class AddressHelper
     private static function validateParam(?object $address = null): void
     {
         if (!$address instanceof OrderAddressEntity && !$address instanceof CustomerAddressEntity) {
-            throw new InvalidArgumentException('the param `address` must be type of ' . OrderAddressEntity::class . ' or ' . CustomerAddressEntity::class . '. Given type: ' . ($address !== null ? $address::class : 'null'));
+            throw new \InvalidArgumentException('the param `address` must be type of ' . OrderAddressEntity::class . ' or ' . CustomerAddressEntity::class . '. Given type: ' . ($address !== null ? $address::class : 'null'));
         }
     }
 }
