@@ -5,6 +5,8 @@ declare(strict_types=1);
 use Frosh\Rector\Set\ShopwareSetList;
 use Rector\CodeQuality\Rector\Class_\InlineConstructorDefaultToPropertyRector;
 use Rector\CodeQuality\Rector\If_\ExplicitBoolCompareRector;
+use Rector\CodeQuality\Rector\Ternary\SwitchNegatedTernaryRector;
+use Rector\CodingStyle\Rector\String_\SymplifyQuoteEscapeRector;
 use Rector\Config\RectorConfig;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
@@ -15,7 +17,8 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     $rectorConfig->skip([
-        \Rector\CodeQuality\Rector\Ternary\SwitchNegatedTernaryRector::class
+        SwitchNegatedTernaryRector::class,
+        SymplifyQuoteEscapeRector::class
     ]);
 
     $rectorConfig->rule(InlineConstructorDefaultToPropertyRector::class);
@@ -37,5 +40,5 @@ return static function (RectorConfig $rectorConfig): void {
         ShopwareSetList::SHOPWARE_6_7_0,
     ]);
 
-    $rectorConfig->phpstanConfig(__DIR__ . '/phpstan.neon');
+    $rectorConfig->phpstanConfig(__DIR__ . '/phpstan.neon.dist');
 };
