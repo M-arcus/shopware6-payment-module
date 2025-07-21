@@ -2,18 +2,4 @@ parameters:
     level: 6
     paths:
         - src
-
-    ignoreErrors:
-        - '#with no value type specified in iterable type array#'
-        - '#type has no value type specified in iterable type array.#'
-        - '#generic class Shopware\\Core\\Framework\\Struct\\ArrayStruct does not specify its types#'
-        - '#generic class Shopware\\Core\\Framework\\Struct\\ArrayStruct but does not specify its types#'
-        -
-            # verified errors: SW < 6.5.4.0 does not support generic types for EntityRepository
-            messages:
-                - '#PHPDoc .*Repository contains generic type Shopware\\Core\\Framework\\DataAbstractionLayer\\EntityRepository<.*but class Shopware\\Core\\Framework\\DataAbstractionLayer\\EntityRepository is not generic.#'
-
     reportUnmatchedIgnoredErrors: false
-    tipsOfTheDay: false
-    bootstrapFiles:
-        - ../../../vendor/autoload.php
