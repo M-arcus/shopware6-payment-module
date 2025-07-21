@@ -1,5 +1,4 @@
-import Plugin from 'src/plugin-system/plugin.class';
-import HttpClient from 'src/service/http-client.service';
+const Plugin = window.PluginBaseClass;
 
 export default class BilliePayment extends Plugin {
     static options = {
@@ -35,10 +34,6 @@ export default class BilliePayment extends Plugin {
                 billie_order_data: this.options.checkoutData,
             })
                 .then((data) => {
-                    const client = new HttpClient(
-                        window.accessKey,
-                        window.contextToken
-                    );
                     let url = '/billie-payment/update-addresses';
                     let locationMatch = window.location.href.match(
                         /account\/order\/edit\/([A-Za-z0-9]+)/
@@ -56,7 +51,15 @@ export default class BilliePayment extends Plugin {
                         data['_csrf_token'] = this.options.csrfToken;
                     }
 
-                    client.post(url, JSON.stringify(data), (response) => {
+                    fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'sw-access-key': window.accessKey,
+                            'sw-context-token': window.contextToken
+                        },
+                        body: JSON.stringify(data)
+                    }).then(() => {
                         this._setAddressConfirmed(true);
                         this.el.value = this.options.checkoutSessionId;
                         this.el.form.submit();

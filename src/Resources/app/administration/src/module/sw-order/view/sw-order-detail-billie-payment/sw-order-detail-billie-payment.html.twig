@@ -1,4 +1,4 @@
-<sw-card
+<mt-card
     class="billie-payment-order-data-card"
     :title="$tc('billie.orderData.cart.title')"
     v-if="order.extensions.billieData"
@@ -28,9 +28,9 @@
                 {{ $tc('billie.orderData.fields.externalInvoiceNumber.label') }}
             </dt>
             <dd>
-                <sw-text-field
+                <mt-text-field
                     v-model:value="order.extensions.billieData.externalInvoiceNumber"
-                ></sw-text-field>
+                ></mt-text-field>
             </dd>
         </sw-description-list>
         <sw-description-list
@@ -41,9 +41,9 @@
                 {{ $tc('billie.orderData.fields.externalInvoiceUrl.label') }}
             </dt>
             <dd>
-                <sw-text-field
+                <mt-text-field
                     v-model:value="order.extensions.billieData.externalInvoiceUrl"
-                ></sw-text-field>
+                ></mt-text-field>
             </dd>
         </sw-description-list>
         <sw-description-list
@@ -54,11 +54,11 @@
                 {{ $tc('billie.orderData.fields.externalDeliveryNoteUrl.label') }}
             </dt>
             <dd>
-                <sw-text-field
+                <mt-text-field
                     v-model:value="order.extensions.billieData.externalDeliveryNoteUrl"
-                ></sw-text-field>
+                ></mt-text-field>
             </dd>
         </sw-description-list>
     </sw-container>
     {% endblock %}
-</sw-card>
+</mt-card>
