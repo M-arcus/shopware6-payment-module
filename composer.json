@@ -37,14 +37,15 @@
         "billie/api-php-sdk": "^3.1"
     },
     "require-dev": {
-        "phpstan/phpstan": "^1.11",
-        "rector/rector": "^1.2",
-        "symplify/easy-coding-standard": "^12.3"
+        "phpstan/phpstan": "^2.1",
+        "rector/rector": "^2.1",
+        "symplify/easy-coding-standard": "^12.5",
+        "frosh/shopware-rector": "^0.5.6"
     },
     "scripts": {
         "rector-fix": "./vendor/bin/rector process --autoload-file ../../../vendor/autoload.php",
         "rector-lint": "./vendor/bin/rector process --dry-run --autoload-file ../../../vendor/autoload.php",
-        "phpstan-lint": "./vendor/bin/phpstan analyse --autoload-file ../../../vendor/autoload.php",
+        "phpstan-lint": "./vendor/bin/phpstan analyse --memory-limit=2G --autoload-file ../../../vendor/autoload.php",
         "code-style-fix": "./vendor/bin/ecs --fix",
         "code-style-lint": "./vendor/bin/ecs",
         "lint": [
@@ -58,5 +59,10 @@
         ],
         "release": "shopware-cli extension zip . --disable-git --release",
         "build": "shopware-cli extension build ."
+    },
+    "config": {
+        "allow-plugins": {
+            "symfony/runtime": true
+        }
     }
 }

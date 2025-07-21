@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Frosh\Rector\Set\ShopwareSetList;
 use Rector\CodeQuality\Rector\Class_\InlineConstructorDefaultToPropertyRector;
 use Rector\CodeQuality\Rector\If_\ExplicitBoolCompareRector;
 use Rector\Config\RectorConfig;
@@ -29,6 +30,11 @@ return static function (RectorConfig $rectorConfig): void {
         SetList::TYPE_DECLARATION,
         SetList::CODING_STYLE,
         LevelSetList::UP_TO_PHP_81,
+        ShopwareSetList::SHOPWARE_6_5_0,
+        ShopwareSetList::SHOPWARE_6_6_0,
+        ShopwareSetList::SHOPWARE_6_6_4,
+        ShopwareSetList::SHOPWARE_6_6_10,
+        ShopwareSetList::SHOPWARE_6_7_0,
     ]);
 
     $rectorConfig->phpstanConfig(__DIR__ . '/phpstan.neon');
