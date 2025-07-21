@@ -1,6 +1,26 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
-        "config:recommended"
+        "config:best-practices",
+        ":dependencyDashboard",
+        ":separateMajorReleases",
+        ":separateMultipleMajorReleases",
+        ":separateMultipleMinorReleases",
+        ":separatePatchReleases",
+        "helpers:pinGitHubActionDigestsToSemver"
+    ],
+    "abandonmentThreshold": "5 years",
+    "packageRules": [
+        {
+            "matchDepNames": [
+                "shopware/administration",
+                "shopware/core",
+                "shopware/elasticsearch",
+                "shopware/storefront"
+            ],
+            "groupName": "Shopware Packages",
+            "groupSlug": "shopware",
+            "versioning": "loose"
+        }
     ]
 }
