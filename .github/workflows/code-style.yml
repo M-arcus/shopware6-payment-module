@@ -1,0 +1,37 @@
+name: Code Style
+on:
+    workflow_dispatch:
+    pull_request:
+    push:
+        branches:
+            - '*'
+            - '*/*'
+
+jobs:
+    cs:
+        if: github.event_name != 'schedule'
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Run CS
+              uses: shopware/github-actions/extension-verifier@main
+              with:
+                  action: format
+
+    check:
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                version-selection: [ 'lowest', 'highest']
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Run Check
+              uses: shopware/github-actions/extension-verifier@main
+              with:
+                  action: check
+                  check-against: ${{ matrix.version-selection }}
