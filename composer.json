@@ -10,9 +10,10 @@
         }
     ],
     "require": {
-        "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
         "billie/api-php-sdk": "^3.2",
-        "shopware/core": "~6.7.0"
+        "shopware/administration": "*",
+        "shopware/core": "~6.7.0",
+        "shopware/storefront": "*"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.47",
