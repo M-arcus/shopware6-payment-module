@@ -41,13 +41,13 @@ jobs:
         run: php -m
 
       - name: "checkout Shopware"
-        uses: actions/checkout@v3
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v3.0.2
         with:
           repository: shopware/production
           ref: ${{ matrix.shopware-version }}
 
       - name: "Checkout ${{ env.COMPOSER_NAME }}"
-        uses: actions/checkout@v3
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v3.0.2
         with:
           path: custom/plugins/${{ env.MODULE_NAME }}
 
