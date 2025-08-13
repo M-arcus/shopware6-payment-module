@@ -16,7 +16,7 @@ jobs:
         steps:
             -   uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
-            -   uses: shopware/shopware-cli-action@72d5fa2c934424f3b1360ccae288aa304b91a4c9 # v1.0.6
+            -   uses: shopware/shopware-cli-action@ec22c652f657d3d632efbe1f7a1c686625ec82a1 # v2.0.0
 
             -   uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
                 with:
