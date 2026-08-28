@@ -16,7 +16,7 @@ jobs:
               uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
             - name: Run CS
-              uses: shopware/github-actions/extension-verifier@main
+              uses: shopware/github-actions/extension-verifier@dad4f02d83cd8d75f48272ab6eae22b480858efc # main
               with:
                   action: format
 
@@ -31,7 +31,7 @@ jobs:
               uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
             - name: Run Check
-              uses: shopware/github-actions/extension-verifier@main
+              uses: shopware/github-actions/extension-verifier@dad4f02d83cd8d75f48272ab6eae22b480858efc # main
               with:
                   action: check
                   check-against: ${{ matrix.version-selection }}
